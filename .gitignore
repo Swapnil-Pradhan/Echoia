@@ -67,3 +67,5 @@ node_modules/
 
 .DS_Store
 .gitattributes
+
+public/API_KEY

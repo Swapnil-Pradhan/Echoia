@@ -1,33 +1,41 @@
 import { HarmBlockThreshold, HarmCategory, GoogleGenerativeAI } from "@google/generative-ai";
 
-const boxes = document.querySelectorAll('.box'), select = document.getElementsByTagName("select")[0], start = document.getElementById("start"),
-    textarea = document.getElementById("speech"), model = new GoogleGenerativeAI("AIzaSyD4BG4OPe3r49HfUP7qllKFooysigwJjD0").getGenerativeModel({
-        model: "gemini-1.5-flash-latest",
-        systemInstruction: "You are a reply predicting AI. You provide some possible short replies separated by commas to the prompt given to you ",
-        generationConfig: {
-            maxOutputTokens: 32,
-            temperature: 0.9,
-            topP: 1,
-            topK: 3
-        }, safetySettings: [{
-            category: HarmCategory.HARM_CATEGORY_HARASSMENT,
-            threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
-        }, {
-            category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-            threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
-        }, {
-            category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-            threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
-        }, {
-            category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-            threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
-        }]
-    }), ai = document.getElementById("suggestions");
+let recActive = false, rec, audioContext, analyser, bufferLength, dataArray, speechStop = 0, API_KEY;
+
+await fetch("API_KEY").then(response => {
+    if (!response.ok) throw new Error(response.statusText);
+    return response.text();
+}).then(key => {
+    API_KEY = key;
+}).catch(error => alert(error));
+
+const boxes = document.querySelectorAll('.box'), select = document.getElementsByTagName("select")[0], start = document.getElementById("start"), textarea = document.getElementById("speech"),
+    model = new GoogleGenerativeAI(API_KEY).getGenerativeModel({
+            model: "gemini-1.5-flash-latest",
+            systemInstruction: "You are a reply predicting AI. You provide some possible short replies separated by commas to the prompt given to you ",
+            generationConfig: {
+                maxOutputTokens: 32,
+                temperature: 0.9,
+                topP: 1,
+                topK: 3
+            }, safetySettings: [{
+                category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+                threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
+            }, {
+                category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+                threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
+            }, {
+                category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+                threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
+            }, {
+                category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+                threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
+            }]
+        }), ai = document.getElementById("suggestions");
 
 select.value = localStorage.lang || "en-IN";
 select.oninput = () => localStorage.setItem("lang", select.value);
 
-let recActive = false, rec, audioContext, analyser, bufferLength, dataArray, speechStop = 0;
 
 start.onclick = elm => {
     audioContext = new (window.AudioContext || window.webkitAudioContext)()
@@ -64,7 +72,7 @@ function stt() {
         start.classList.remove("speaking");
         recActive = false;
         speechStop = 0;
-        
+
         return;
     } else {
         textarea.innerHTML = "";
