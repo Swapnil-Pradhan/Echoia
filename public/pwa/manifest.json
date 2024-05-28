@@ -1,0 +1,50 @@
+{
+    "name": "Echoia",
+    "short_name": "Echoia",
+    "start_url": "index.html",
+    "display": "fullscreen",
+    "description": "Echoia - Hear the Unheard. A boon for people with hearing impairment.",
+    "lang": "en-IN",
+    "theme_color": "#2f4f4f",
+    "background_color": "#2f4f4f",
+    "orientation": "any",
+    "categories": [
+        "medical"
+      ],
+      "scope": "/",
+      "id": "Audacious",
+    "icons": [
+        {
+            "src": "echoia.png",
+            "sizes": "682x682",
+            "type": "image/png"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "ss/landscape/dark.png",
+            "sizes": "3420x1964",
+            "type": "image/png",
+            "form_factor": "wide",
+            "description": "Desktop Echoia in dark theme"
+        }, {
+            "src": "ss/landscape/light.png",
+            "sizes": "3420x1964",
+            "type": "image/png",
+            "form_factor": "wide",
+            "description": "Desktop Echoia in light theme"
+        }, {
+            "src": "ss/portrait/dark.png",
+            "sizes": "1000x1850",
+            "type": "image/png",
+            "description": "Mobile Echoia in dark theme"
+        }, {
+            "src": "ss/portrait/light.png",
+            "sizes": "1000x1850",
+            "type": "image/png",
+            "description": "Mobile Echoia in light theme"
+        }
+    ],
+    "prefer_related_applications": false,
+    "related_applications": []
+}

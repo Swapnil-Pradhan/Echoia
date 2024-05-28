@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "public": "public",
+    "site": "echoia",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

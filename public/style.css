@@ -1,0 +1,314 @@
+* {
+    transition: .4s ease-out;
+}
+
+body {
+    margin: 0;
+    height: calc(100vh - 6ch);
+    padding: 3ch;
+    color: snow;
+    background-image: url("handwriting-bg.svg");
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: grid;
+    grid-gap: 3ch;
+    max-height: 100vh;
+    overflow: hidden;
+}
+
+button,
+select {
+    border-radius: 69px;
+    border: .1px solid lightslategrey;
+    padding: 1ch;
+    color: snow;
+    font-size: large;
+    background-color: black;
+    user-select: none;
+    text-align: center;
+    margin-right: 1ch;
+    text-decoration: none;
+    animation: appear .3s ease-out;
+}
+
+button:hover:not(input:placeholder-shown ~ button),
+select:hover {
+    background-color: azure !important;
+    scale: 1.1;
+    color: darkblue;
+    cursor: pointer;
+    box-shadow: white 0 0 18px;
+}
+
+button:active:not(input:placeholder-shown ~ button),
+select:active {
+    scale: .9;
+    transition: 0.2s;
+    transition-timing-function: ease-out;
+    opacity: 1;
+}
+
+@media screen and (prefers-color-scheme: light) {
+    body{
+        -webkit-backdrop-filter: invert(1);
+        backdrop-filter: invert(1);
+    }
+
+    #start{
+        color: darkslategray;
+        border: 1px solid black;
+    }
+    
+    #suggestions::before {
+        background-image: linear-gradient(to bottom, rgba(0, 0, 255, 0.1), transparent);
+    }
+    
+    #speech,
+    #suggestions,
+    #suggestions::before {
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+        color: #1c232c;
+    }
+    
+    #speech,
+    #suggestions {
+        background-color: rgba(0, 0, 255, 0.1);
+    }
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    #suggestions::before {
+        background-image: linear-gradient(to bottom, #1c232c 33%, transparent);
+    }
+    
+    #speech,
+    #suggestions,
+    #suggestions::before{
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+    }
+    
+    #speech,
+    #suggestions {
+        background-image: radial-gradient(transparent, #1c232c);
+    }
+
+    #start{
+        color: snow;
+    }
+}
+
+@media screen and (orientation: portrait) {
+    body {
+        grid-template-areas: "speech speech" "suggestions suggestions" "playlang visualiser";
+        grid-template-rows: 3fr 2fr 3fr;
+    }
+
+    #suggestions {
+        min-height: 18vh;
+    }
+
+    #playlang,
+    #boxes {
+        position: absolute;
+        bottom: 7vh;
+        left: 50%;
+        translate: -50%;
+        height: 24ch;
+    }
+
+    select {
+        margin-bottom: 3ch;
+    }
+
+    #boxes {
+        translate: -50% 5ch;
+
+    }
+
+    #suggestions>button:focus {
+        translate: 0 -45vh;
+        scale: 2;
+        rotate: 180deg;
+    }
+}
+
+@media screen and (orientation: landscape) {
+    body {
+        grid-template-areas: "visualiser speech speech" "playlang suggestions suggestions";
+        grid-template-columns: 33vw auto;
+        grid-template-rows: auto 33vh;
+    }
+
+    #start {
+        border: 1px solid white;
+        box-sizing: border-box;
+    }
+
+    #start:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    #start.speaking {
+        border: 9px solid orangered;
+        border-radius: 25%;
+        scale: .9;
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    #boxes {
+        position: relative;
+        align-self: center;
+        scale: .9;
+    }
+
+    #suggestions>button:focus {
+        translate: 0 -45vh;
+        scale: 2;
+    }
+}
+
+#boxes {
+    transition: border-radius 3s;
+    filter: grayscale(1);
+    animation: 9s rotate infinite linear;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+}
+
+.box {
+    width: 100%;
+    border-radius: 50%;
+    border: 6.9px solid;
+    position: absolute;
+    box-sizing: border-box;
+    aspect-ratio: 1/1;
+    transition: all 0.3s, border-radius 2s ease-in-out;
+}
+
+@keyframes rotate {
+    to {
+        transform: rotateZ(360deg);
+    }
+}
+
+#playlang {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#start {
+    border-radius: 50%;
+    height: 4ch;
+    aspect-ratio: 1/1;
+    font-size: 12ch;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    padding: 0;
+    z-index: 2;
+}
+
+#start:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#speech {
+    font-size: x-large;
+    overflow: hidden auto;
+    text-overflow: ellipsis;
+    border-radius: 45px;
+    padding: 3ch;
+}
+
+#speech:empty::before {
+    content: "Say something!";
+    display: flex;
+    color: gray;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: xxx-large
+}
+
+#speech::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 9px black;
+    border-radius: 10px;
+}
+
+#speech::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent;
+}
+
+#speech::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122, 153, 217)), color-stop(0.72, rgb(73, 125, 189)), color-stop(0.86, rgb(28, 58, 148)));
+}
+
+#suggestions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+    flex-wrap: wrap;
+    border-radius: 33px;
+    position: relative;
+    margin-top: 2ch;
+    
+    form {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        width: 100%;
+        border-radius: 0 0 33px 33px;
+        overflow: hidden;
+        
+        button {
+            position: absolute;
+            right: 0;
+            margin: 0;
+            border-radius: 0 0 33px 0;
+            border: none;
+            background-color: rgb(22, 19, 43);
+        }
+    }
+}
+
+#suggestions::before {
+    content: "✨ Suggestions";
+    position: absolute;
+    top: 0;
+    translate: 0 -50%;
+    border-radius: 69px;
+    padding: .5ch;
+}
+
+input {
+    width: calc(100% - 4ch);
+    background-color: darkslateblue;
+    font-size: large;
+    padding: .5ch;
+    border: none;
+    outline: none;
+    padding: 1ch 2ch;
+    color: rgb(255, 226, 255);
+    left: 0;
+}
+
+input:placeholder-shown~button {
+    translate: 100%;
+}
+
+@keyframes appear {
+    from {
+        scale: 0;
+        opacity: 0;
+    }
+}

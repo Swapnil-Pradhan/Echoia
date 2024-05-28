@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta value="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Echoia</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="pwa/echoia.png" type="image/png">
+  <link rel="manifest" href="pwa/manifest.json" />
+
+  <meta name="theme-color" content="darkslategray">
+</head>
+
+<body bgcolor="black">
+  <div id="speech" style="grid-area: speech"></div>
+
+  <div id="suggestions" style="grid-area: suggestions">
+    <i style="opacity: .69;">Echoia has nothing to show</i>
+    <form>
+      <input type="text" placeholder="Your reply..." name="reply">
+      <button type="submit">➡️</button>
+    </form>
+  </div>
+
+  <div id="boxes" style="grid-area: visualiser">
+    <span class="box" style="border-color: lightgray"></span>
+    <span class="box"
+      style="border-color: rgba(45, 230, 255, 0.852); filter: drop-shadow(0 0 1cm rgba(37, 118, 169));"></span>
+    <span class="box"
+      style="border-color: rgba(63, 209, 63, 0.8); filter: drop-shadow(0 0 1cm rgb(63, 209, 63));"></span>
+    <span class="box" style="border-color: rgba(255, 44, 44, 0.8); filter: drop-shadow(0 0 1cm crimson);"></span>
+  </div>
+
+
+  <div id="playlang" style="grid-area: playlang">
+    <select>
+      <optgroup label="with AI suggestions">
+        <option value="hi-IN">Hindi</option>
+        <option value="en-IN">English</option>
+        <option value="bn-IN">Bengali</option>
+      </optgroup>
+      <optgroup label="no AI suggestions">
+        <option value="gu-IN">Gujarati</option>
+        <option value="kn-IN">Kannada</option>
+        <option value="ml-IN">Malayalam</option>
+        <option value="mr-IN">Marathi</option>
+        <option value="pa-IN">Punjabi</option>
+        <option value="ta-IN">Tamil</option>
+        <option value="te-IN">Telugu</option>
+        <option value="ur-IN">Urdu</option>
+      </optgroup>
+    </select>
+    <br><br>
+    <span id="start">⏯</span>
+  </div>
+
+  <script type="importmap">
+                    {
+                      "imports": {
+                        "@google/generative-ai": "https://esm.run/@google/generative-ai"
+                      }
+                    }
+                  </script>
+  <script src="script.js" type="module"></script>
+  <script> if (typeof navigator.serviceWorker !== 'undefined') navigator.serviceWorker.register("pwa/pwabuilder-sw.js")</script>
+</body>
+</html>
