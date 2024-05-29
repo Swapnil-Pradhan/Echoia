@@ -15,9 +15,25 @@
       "id": "Audacious",
     "icons": [
         {
-            "src": "echoia.png",
-            "sizes": "682x682",
-            "type": "image/png"
+            "src": "icons/x512/color.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable any"
+        }, {
+            "src": "icons/x512/monochrome.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }, {
+            "src": "icons/x114/color.png",
+            "sizes": "114x114",
+            "type": "image/png",
+            "purpose": "monochrome maskable any"
+        }, {
+            "src": "icons/x114/monochrome.png",
+            "sizes": "114x114",
+            "type": "image/png",
+            "purpose": "monochrome maskable any"
         }
     ],
     "screenshots": [
