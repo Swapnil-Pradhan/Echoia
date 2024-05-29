@@ -15,22 +15,22 @@
       "id": "Audacious",
     "icons": [
         {
-            "src": "icons/x512/color.png",
+            "src": "pwa/icons/x512/color.png",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "maskable any"
         }, {
-            "src": "icons/x512/monochrome.png",
+            "src": "pwa/icons/x512/monochrome.png",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "any"
         }, {
-            "src": "icons/x114/color.png",
+            "src": "pwa/icons/x114/color.png",
             "sizes": "114x114",
             "type": "image/png",
             "purpose": "monochrome maskable any"
         }, {
-            "src": "icons/x114/monochrome.png",
+            "src": "pwa/icons/x114/monochrome.png",
             "sizes": "114x114",
             "type": "image/png",
             "purpose": "monochrome any"
@@ -38,24 +38,24 @@
     ],
     "screenshots": [
         {
-            "src": "ss/landscape/dark.png",
+            "src": "pwa/ss/landscape/dark.png",
             "sizes": "3420x1964",
             "type": "image/png",
             "form_factor": "wide",
             "description": "Desktop Echoia in dark theme"
         }, {
-            "src": "ss/landscape/light.png",
+            "src": "pwa/ss/landscape/light.png",
             "sizes": "3420x1964",
             "type": "image/png",
             "form_factor": "wide",
             "description": "Desktop Echoia in light theme"
         }, {
-            "src": "ss/portrait/dark.png",
+            "src": "pwa/ss/portrait/dark.png",
             "sizes": "1000x1850",
             "type": "image/png",
             "description": "Mobile Echoia in dark theme"
         }, {
-            "src": "ss/portrait/light.png",
+            "src": "pwa/ss/portrait/light.png",
             "sizes": "1000x1850",
             "type": "image/png",
             "description": "Mobile Echoia in light theme"
